@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8063b8">
+  <title>Estudar+ ENEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio" data-page="inicio"><span class="brand-icon">✦</span><span>estudar<span class="brand-plus">+</span><small>PREPARAÇÃO ENEM</small></span></a>
+      <div class="side-label">MENU PRINCIPAL</div>
+      <nav class="main-nav" aria-label="Menu principal">
+        <button class="nav-link active" data-page="inicio"><span>⌂</span> Início</button>
+        <button class="nav-link" data-page="questoes"><span>▤</span> Banco de questões</button>
+        <button class="nav-link" data-page="redacao"><span>✎</span> Redação</button>
+        <button class="nav-link" data-page="favoritas"><span>♡</span> Favoritas <b id="favoriteCount" class="nav-count">0</b></button>
+      </nav>
+      <div class="sidebar-note"><span>☁</span><strong>Um passo de cada vez.</strong><p>Seu futuro começa nos estudos de hoje.</p></div>
+      <div class="sidebar-footer">Feito para sua jornada ENEM ♡</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div><span class="eyebrow">SUA JORNADA DE APRENDIZADO</span><h1 id="pageTitle">Bom dia! Vamos estudar? <span>✦</span></h1></div><div class="top-date" id="todayDate"></div></header>
+
+      <section class="page active" id="page-inicio">
+        <div class="welcome-card"><div><span class="welcome-kicker">SEU ESPAÇO DE ESTUDOS</span><h2>Pequenos passos,<br>grandes conquistas.</h2><p>Organize sua preparação e acompanhe sua evolução rumo ao ENEM.</p><button class="primary-button" data-go="questoes">Começar a estudar <span>→</span></button></div><div class="welcome-art" aria-hidden="true"><div class="art-circle">✦</div><div class="art-book">▤</div><div class="art-star star-one">✧</div><div class="art-star star-two">✦</div></div></div>
+        <div class="stats-grid"><article class="stat-card"><span class="stat-icon lavender">♡</span><div><small>QUESTÕES FAVORITAS</small><strong id="homeFavoriteCount">0</strong><p>Para revisar depois</p></div></article><article class="stat-card"><span class="stat-icon peach">✎</span><div><small>REDAÇÕES SALVAS</small><strong id="homeEssayCount">0</strong><p>Suas ideias em evolução</p></div></article><article class="stat-card"><span class="stat-icon mint">✓</span><div><small>QUESTÕES RESPONDIDAS</small><strong id="answeredCount">0</strong><p>Respostas registradas</p></div></article></div>
+        <div class="home-columns"><article class="panel"><div class="panel-heading"><div><span class="eyebrow">COMECE POR AQUI</span><h3>Seu plano de hoje</h3></div><span class="soft-pill">✨ foco</span></div><div class="task-row"><span class="task-number">01</span><div><strong>Resolver questões</strong><p>Pratique com provas anteriores do ENEM.</p></div><button class="text-button" data-go="questoes">Acessar →</button></div><div class="task-row"><span class="task-number">02</span><div><strong>Treinar redação</strong><p>Escolha um tema e desenvolva suas ideias.</p></div><button class="text-button" data-go="redacao">Acessar →</button></div></article><article class="quote-card"><span>“</span><p>A educação é a arma mais poderosa que você pode usar para mudar o mundo.</p><small>— Nelson Mandela</small></article></div>
+      </section>
+
+      <section class="page" id="page-questoes">
+        <div class="section-intro"><span class="eyebrow">PRATIQUE E EVOLUA</span><h2>Banco de questões</h2><p>Escolha uma área e um ano para encontrar questões de provas anteriores.</p></div>
+        <div class="panel filter-panel"><div class="filters-grid"><label>Área do conhecimento<select id="subject"><option value="matematica">Matemática</option><option value="linguagens">Linguagens</option><option value="humanas">Ciências Humanas</option><option value="natureza">Ciências da Natureza</option></select></label><label>Ano da prova<select id="year"></select></label><label id="languageField" class="hidden">Idioma<select id="language"><option value="ingles">Inglês</option><option value="espanhol">Espanhol</option></select></label><button id="loadQuestions" class="primary-button filter-button">Buscar questões <span>→</span></button></div><p class="filter-help">As questões são carregadas da API ENEM. A primeira busca pode levar alguns segundos.</p></div>
+        <div class="results-heading"><div><h3>Questões encontradas</h3><p id="questionHint" aria-live="polite">Selecione os filtros e clique em “Buscar questões”.</p></div><span id="resultCount" class="soft-pill">0 questões</span></div>
+        <div id="questions" class="question-list"><div class="empty-state"><span>✧</span><strong>Seu próximo aprendizado começa aqui</strong><p>As questões aparecerão nesta área.</p></div></div>
+        <div id="questionPagination" class="pagination"></div>
+      </section>
+
+      <section class="page" id="page-redacao">
+        <div class="section-intro"><span class="eyebrow">ESCREVA, REVISE, EVOLUA</span><h2>Espaço de redação</h2><p>Consulte temas anteriores e guarde seus textos para acompanhar sua evolução.</p></div>
+        <div class="essay-layout"><article class="panel essay-editor"><div class="panel-heading"><div><span class="eyebrow">SEU RASCUNHO</span><h3>Nova redação</h3></div><span class="soft-pill">✎ escrita</span></div><label>Tema da redação<input id="essayTheme" type="text" placeholder="Digite o tema escolhido..."></label><label>Seu texto<textarea id="essayText" rows="12" placeholder="Comece a escrever sua introdução aqui..."></textarea></label><div class="editor-footer"><span id="wordCount">0 palavras</span><button id="saveEssay" class="primary-button">Salvar redação <span>♡</span></button></div></article><aside class="panel themes-panel"><div class="panel-heading"><div><span class="eyebrow">INSPIRAÇÃO</span><h3>Temas anteriores</h3></div></div><p class="small-muted">Selecione um tema para preencher o campo da redação.</p><div id="essayThemes" class="theme-list"></div></aside></div>
+        <article class="panel saved-panel"><div class="panel-heading"><div><span class="eyebrow">SEU HISTÓRICO</span><h3>Redações salvas</h3></div><span id="essayCount" class="soft-pill">0 textos</span></div><div id="savedEssays" class="saved-essays"><div class="empty-inline">Você ainda não salvou nenhuma redação.</div></div></article>
+      </section>
+
+      <section class="page" id="page-favoritas">
+        <div class="section-intro"><span class="eyebrow">REVISE NO SEU TEMPO</span><h2>Questões favoritas</h2><p>Aqui ficam as questões que você marcou para estudar novamente.</p></div>
+        <div id="favorites" class="question-list"><div class="empty-state"><span>♡</span><strong>Nenhuma questão salva ainda</strong><p>Use o coração nas questões para guardá-las aqui.</p></div></div>
+      </section>
+      <footer class="main-footer">ESTUDAR+ ENEM <span>•</span> Sua dedicação constrói seu caminho.</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
